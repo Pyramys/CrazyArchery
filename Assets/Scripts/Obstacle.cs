@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Obstacle : MonoBehaviour {
-    //Peasants work like this, they pick a random location, move to it, stand around for a while, then move to the next point
+    // Peasants work like this, they pick a random location, move to it, stand around for a while, then move to the next point.
     [SerializeField] private float flt_peasantDistance;
     [SerializeField] private float flt_idleTimer=3;
     [SerializeField] private float flt_defaultIdleTimer;
@@ -15,7 +15,7 @@ public class Obstacle : MonoBehaviour {
     [SerializeField] private float flt_defaultSpeed;
 
 
-    //MVP: Peasant script that just wanders around
+    // MVP: Peasant script that just wanders around.
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -23,13 +23,13 @@ public class Obstacle : MonoBehaviour {
         flt_defaultIdleTimer = flt_idleTimer;
         flt_defaultSpeed = navMeshAgent.speed;
     }
-    // Use this for initialization
+    // Use this for initialization.
     void Start () {
         navMeshAgent.SetDestination(RandomNavSphere());
 
     }
 	
-	// Update is called once per frame
+	// Update is called once per frame.
 	void Update () {
         if(!bool_isIdle)
         {
@@ -50,7 +50,7 @@ public class Obstacle : MonoBehaviour {
     Vector3 RandomNavSphere()
     {
         NavMeshHit navHit;
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * flt_peasantDistance;
+        var randomDirection = UnityEngine.Random.insideUnitSphere * flt_peasantDistance;
 
         randomDirection += transform.position;
 
@@ -86,7 +86,7 @@ public class Obstacle : MonoBehaviour {
         navMeshAgent.speed = 0;
     }
 
-    //END MVP//---------------------------------
+    // End MVP.
 
 
 }

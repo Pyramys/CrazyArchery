@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    //Script that controls all p[layer actions
-    //mainly reading input from the user and tracking certain things on the player
-    //The biggest thing it does is fire arrows from the bow area
+    // Script that controls all player actions.
+    // mainly reading input from the user and tracking certain things on the player.
+    // The biggest thing it does is fire arrows from the bow area.
 
     [SerializeField] private Vector3 vec3_arrowDefaultPosition;
 
-    //Arrow firing logic
-    //Player taps screen to fire an arrow
-    //Player holds tap to draw arrow back
-    //Player releases tap to launch an arrow, and a script on the arrow handles its actions and itneractions
-    //
+    // Arrow firing logic.
+    // Player taps screen to fire an arrow.
+    // Player holds tap to draw arrow back.
+    // Player releases tap to launch an arrow, and a script on the arrow handles its actions and itneractions.
+    
     [SerializeField] private bool bool_isHolding = false;
     [SerializeField] private float flt_timeHolding;
-    [SerializeField] private GameObject go_arrow;               //Refernce to what the bow will be firing
-    [SerializeField] private GameObject go_loadedArrow;         //Reference to the exact arrow loaded unto bow
+    // Reference to what the bow will be firing.
+    [SerializeField] private GameObject go_arrow;
+    // Reference to the exact arrow loaded unto bow.
+    [SerializeField] private GameObject go_loadedArrow;         
     [SerializeField] private Vector3 vec3_originalRotation;
     [SerializeField] private bool bool_isReloading;
-    [SerializeField] private float flt_reloadTime=.5f;                 //Time Spent Reloading
-    [SerializeField] private float flt_startReloadTimeStamp;        //Record the time player started reloading
+    // Time Spent Reloading.
+    [SerializeField] private float flt_reloadTime=.5f;
+    // Record the time player started reloading.
+    [SerializeField] private float flt_startReloadTimeStamp;        
     [SerializeField] private float flt_arrowVelocityRampUp;
-
     [SerializeField] private bool bool_isEnded;
     [SerializeField] private GameObject go_target;
 
@@ -77,9 +80,9 @@ public class Player : MonoBehaviour {
         if(Input.GetMouseButtonDown(0))
         {
             bool_isHolding = true;
-            //Begins holding the bow, this is how the player can move the camera around and aim his bow
+            // Begins holding the bow, this is how the player can move the camera around and aim his bow.
         }      
-        //DEBUG ONLY
+        // DEBUG ONLY.
         if(Input.GetKeyDown(KeyCode.Space))
         {
             if(Cursor.lockState == CursorLockMode.Locked)
@@ -94,16 +97,16 @@ public class Player : MonoBehaviour {
 
     void FireBow()
     {
-        //Fire the bow straight ahead 
+        // Fire the bow straight ahead .
         go_loadedArrow.transform.parent = null;
         go_loadedArrow.GetComponent<Rigidbody>().isKinematic = false;
         go_loadedArrow.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * flt_timeHolding*5;
         go_loadedArrow.GetComponent<Arrow>().Flt_timeHeld = flt_timeHolding;
 
-        //Begin reload process
+        // Begin reload process.
         flt_startReloadTimeStamp = Time.time;
         
-        //Reset variables
+        // Reset variables.
         bool_isHolding = false;
         flt_timeHolding = 0;
         bool_isReloading = true;
@@ -116,9 +119,6 @@ public class Player : MonoBehaviour {
         go_loadedArrow.transform.SetParent(this.gameObject.transform);
         go_loadedArrow.transform.localPosition = vec3_arrowDefaultPosition;
         go_loadedArrow.transform.localRotation = Quaternion.Euler(vec3_originalRotation);
-        
-
-        
     }
 
     public void MoveToTarget()
@@ -130,9 +130,6 @@ public class Player : MonoBehaviour {
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, go_target.transform.position, 2);
-        }
-        
-        
+        }   
     }
-
 }

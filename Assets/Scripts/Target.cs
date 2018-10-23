@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour {
-    //This Script controls the target as a whole
-    //Most has to do with its movement
+    // This Script controls the target as a whole.
+    // Most has to do with its movement.
     [SerializeField] private Transform trans;
 
-    //FOR MVP: Need it to just move left and right not too fast
+    // FOR MVP: Need it to just move left and right not too fast.
     [SerializeField] private float flt_moveSpeed=1;
     [SerializeField] private float flt_leftConstraint = -5f;
     [SerializeField] private float flt_rightConstraint = 5;
@@ -18,12 +18,12 @@ public class Target : MonoBehaviour {
         trans = GetComponent<Transform>();
         vec3_direction = new Vector3(1, 0, 0);
     }
-    // Use this for initialization
+    // Use this for initialization.
     void Start () {
 		
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame.
 	void Update () {
 		if(trans.position.x >= flt_rightConstraint)
         {

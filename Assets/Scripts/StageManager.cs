@@ -4,9 +4,10 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour {
-    //This handles the stage
+    // This script handles the stage.
     [SerializeField] private GameObject[] go_civilians;
-    [SerializeField] private float flt_eventStartTime=45;   //Time for the event to start
+    // Time for the event to start.
+    [SerializeField] private float flt_eventStartTime=45;   
     [SerializeField] private float flt_eventTimeStamp;
     [SerializeField] private float flt_eventDuration = 15;
     [SerializeField] private bool bool_isEventHappening;
@@ -27,13 +28,13 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
+    // Use this for initialization.
     void Start () {
         InitializeStage();
 
     }
 	
-	// Update is called once per frame
+	// Update is called once per frame.
 	void Update () {
 		
 	}
@@ -59,7 +60,7 @@ public class StageManager : MonoBehaviour {
         txt_timerText.color = Color.red; 
         bool_isEventHappening = true;
         flt_eventTimeStamp = Time.time;
-        foreach(GameObject go in go_civilians)
+        foreach(var go in go_civilians)
         {
             go.GetComponent<Obstacle>().Enrage();
         }
@@ -69,7 +70,7 @@ public class StageManager : MonoBehaviour {
     public void EndEvent()
     {
         txt_timerText.color = Color.black;
-        foreach (GameObject go in go_civilians)
+        foreach (var go in go_civilians)
         {
             go.GetComponent<Obstacle>().Unrage();
         }
@@ -81,16 +82,16 @@ public class StageManager : MonoBehaviour {
     public void EndStage()
     {
         target.End();
-        //stop the scene
+        // Stop the scene.
         foreach (GameObject go in go_civilians)
         {
             go.GetComponent<Obstacle>().End();
         }
-        //Zoom into the target to view, linger until player taps screen
-        player.MoveToTarget();
-        //disable the scene
-        //Trigger Ad
-        //Bring up score Screen
-        // Change stars color based on performance
+        // Zoom into the target to view, linger until player taps screen.
+        //player.MoveToTarget();
+        // Disable the scene.
+        // Trigger Ad.
+        // Bring up score Screen,
+        // Change stars color based on performance,
     }
 }

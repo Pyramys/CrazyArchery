@@ -7,8 +7,10 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100.0f;
     public float clampAngle = 80.0f;
 
-    private float rotY = 0.0f; // rotation around the up/y axis
-    private float rotX = 0.0f; // rotation around the right/x axis
+    // Rotation around the up/y axis.
+    private float rotY = 0.0f;
+    // Rotation around the right/x axis.
+    private float rotX = 0.0f; 
 
     void Start()
     {
@@ -19,8 +21,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = -Input.GetAxis("Mouse Y");
+        var mouseX = Input.GetAxis("Mouse X");
+        var mouseY = -Input.GetAxis("Mouse Y");
 
         rotY += mouseX * mouseSensitivity * Time.deltaTime;
         rotX += mouseY * mouseSensitivity * Time.deltaTime;

@@ -4,25 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
-    //This script manages the UI for the game
-    //It will require certain UI states that will enable and disable UI Panels
-    //Reference to various objects and scripts
-    [SerializeField] private int int_UIState = 0; //0 is Main Menu, 1 is Level Select,  2 is Pause,  3 is Scene,   4 is End Scene
+    // This script manages the UI for the game.
+    // It will require certain UI states that will enable and disable UI Panels.
+    // Reference to various objects and scripts.
+    // 0 is Main Menu, 1 is Level Select,  2 is Pause,  3 is Scene,   4 is End Scene.
+    [SerializeField] private int int_UIState = 0; 
 
     [SerializeField] private GameObject go_MainMenuPanel;
     [SerializeField] private GameObject go_LevelSelectPanel;
     [SerializeField] private GameObject go_PausePanel;
     [SerializeField] private GameObject go_ScenePanel;
     [SerializeField] private GameObject go_EndScenePanel;
-    
-    //Time variables and Components
-    [SerializeField] private float flt_secondTime=60;        //Running second Timer
-    [SerializeField] private float flt_minuteTime=2;        //Running Minute Timer
-    [SerializeField] private Text txt_time;         //UI version of the time
+
+    // Time variables and Components.
+    // Running second Timer.
+    [SerializeField] private float flt_secondTime=60;
+    // Running Minute Timer.
+    [SerializeField] private float flt_minuteTime=2;
+    // UI version of the time.
+    [SerializeField] private Text txt_time;         
     [SerializeField] private Slider slider_timeSlider;
     [SerializeField] private float flt_percentage;
 
-    //Other Components
+    // Other Components.
     [SerializeField] private GameManager gameManager;
     [SerializeField] private StageManager stageManager;
     private static UIManager _instance = null;
@@ -46,14 +50,14 @@ public class UIManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    // Use this for initialization
+    // Use this for initialization.
     void Start () {
         int_UIState = 3;
         slider_timeSlider.value = 1;
         UpdateUI();
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame.
 	void Update () {
         
 	}
@@ -63,28 +67,33 @@ public class UIManager : MonoBehaviour {
         DisableAllPanels();
         switch (int_UIState)
         {
-            case 0: //Main Menu
+            // Main Menu.
+            case 0: 
                 {
                     go_MainMenuPanel.SetActive(true);
                     break;
                 }
-            case 1: //Level Select
+            // Level Select.
+            case 1: 
                 {
                     go_LevelSelectPanel.SetActive(true);
                     break;
                 }
-            case 2: //Pause
+            // Pause.
+            case 2:
                 {
                     go_PausePanel.SetActive(true);
                     break;
                 }
-            case 3: //Scene
+            // Scene.
+            case 3: 
                 {
                     go_ScenePanel.SetActive(true);
                     StartTimer();
                     break;
                 }
-            case 4: //End Scene
+            // End Scene.
+            case 4: 
                 {
                     go_EndScenePanel.SetActive(true);
                     break;
@@ -99,7 +108,7 @@ public class UIManager : MonoBehaviour {
 
     void DisableAllPanels()
     {
-        //Disable all UI Panels to enable only the current one
+        // Disable all UI Panels to enable only the current one.
         go_EndScenePanel.SetActive(false);
         go_MainMenuPanel.SetActive(false);
         go_LevelSelectPanel.SetActive(false);
@@ -120,6 +129,7 @@ public class UIManager : MonoBehaviour {
 
     void Timer()
     {
+        // Slowly decrements second timer from 60, once it reaches 0 decrement a minute.
         flt_secondTime -= 1;
         if (flt_secondTime == 60 - stageManager.Flt_eventStartTime)
         {
@@ -135,7 +145,7 @@ public class UIManager : MonoBehaviour {
             flt_minuteTime -= 1;
             if(flt_minuteTime < 0)
             {
-                //End Match
+                // End Match.
                 flt_secondTime = 60;
                 flt_minuteTime = 2;
                 stageManager.EndStage();
@@ -143,6 +153,7 @@ public class UIManager : MonoBehaviour {
                 slider_timeSlider.value = 1;
             }
         }
+        // Translates the value into UI text.
         if(flt_secondTime == 60)
         {
             txt_time.text = ((flt_minuteTime+1).ToString() + " : 00");

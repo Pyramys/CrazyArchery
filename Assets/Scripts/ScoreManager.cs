@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour {
                     break;
                 }
         }
-        //Update Score Text
+        // Update Score Text.
         txt_score.text = "Score: " + int_score.ToString();
     }
 
