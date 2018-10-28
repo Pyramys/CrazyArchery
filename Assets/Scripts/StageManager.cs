@@ -14,6 +14,9 @@ public class StageManager : MonoBehaviour {
     [SerializeField] private Text txt_timerText;
     [SerializeField] private Player player;
     [SerializeField] private Target target;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera stageEndCamera;
+
 
     public float Flt_eventStartTime
     {
@@ -28,14 +31,23 @@ public class StageManager : MonoBehaviour {
         }
     }
 
+    private void Awake()
+    {
+        if(stageEndCamera == null)
+        {
+            stageEndCamera = GameObject.Find("StageEndingCamera").GetComponent<Camera>();
+        }        
+    }
     // Use this for initialization.
-    void Start () {
+    void Start ()
+    {
         InitializeStage();
 
     }
 	
 	// Update is called once per frame.
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -81,17 +93,21 @@ public class StageManager : MonoBehaviour {
 
     public void EndStage()
     {
-        target.End();
         // Stop the scene.
-        foreach (GameObject go in go_civilians)
+        target.End();       
+        foreach (var go in go_civilians)
         {
             go.GetComponent<Obstacle>().End();
         }
         // Zoom into the target to view, linger until player taps screen.
+        // Activate the Stage End camera, and have it zoom in
+        stageEndCamera.enabled = true;
+        
+
         //player.MoveToTarget();
         // Disable the scene.
         // Trigger Ad.
-        // Bring up score Screen,
-        // Change stars color based on performance,
+        // Bring up score Screen.
+        // Change stars color based on performance.
     }
 }
