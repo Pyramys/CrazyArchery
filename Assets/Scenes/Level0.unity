@@ -207,8 +207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 75624542}
   - component: {fileID: 75624541}
-  - component: {fileID: 75624540}
-  - component: {fileID: 75624539}
   - component: {fileID: 75624538}
   m_Layer: 0
   m_Name: StageEndingCamera
@@ -216,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &75624538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,20 +230,6 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   distanceToStop: 0
   movingSpeed: 1
---- !u!81 &75624539
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 75624537}
-  m_Enabled: 1
---- !u!124 &75624540
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 75624537}
-  m_Enabled: 1
 --- !u!20 &75624541
 Camera:
   m_ObjectHideFlags: 0

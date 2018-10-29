@@ -21,19 +21,24 @@ public class StageEndingCameraScript : MonoBehaviour {
     {
         // Move towards the target.
         if (isMoving)
-        { 
+        {
             if (Vector3.Distance(transform.position, targetTransform.position) <= distanceToStop)
             {
                 isMoving = false;
             }
         }
-	}
+        else
+        {
+            Vector3.MoveTowards(transform.position, targetTransform.position, distanceToStop);
+        }
+    }
 
     private void OnEnable()
     {
         targetTransform = GameObject.FindGameObjectWithTag("Target").transform;
         var camVector3 = GameObject.FindGameObjectWithTag("Main Camera").transform.position;
         transform.position = camVector3;
+        isMoving = true;
 
 
     }
