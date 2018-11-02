@@ -126,14 +126,13 @@ public class UIManager : MonoBehaviour {
     {
         InvokeRepeating("Timer", 1, 1);
     }
-
+    
     void Timer()
     {
         // Slowly decrements second timer from 60, once it reaches 0 decrement a minute.
         flt_secondTime -= 1;
         if (flt_secondTime == 60 - stageManager.Flt_eventStartTime)
         {
-            Debug.Log("START EVENT");
             stageManager.StartEvent();
         }   
         

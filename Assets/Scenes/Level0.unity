@@ -272,13 +272,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 75624537}
-  m_LocalRotation: {x: 0.093394205, y: -0, z: -0, w: 0.9956293}
-  m_LocalPosition: {x: 0, y: 2, z: -18.5}
+  m_LocalRotation: {x: 0.09237009, y: -0.14703777, z: 0.013792755, w: 0.9847119}
+  m_LocalPosition: {x: 0.98, y: 0.61, z: -2.8489842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 26
-  m_LocalEulerAnglesHint: {x: 10.718, y: 0, z: 0}
+  m_Father: {fileID: 1857669416}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 10.718, y: -16.985, z: 0}
 --- !u!1 &207738556
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   player: {fileID: 683627668}
   target: {fileID: 1857669418}
   mainCamera: {fileID: 0}
-  stageEndCamera: {fileID: 0}
+  stageEndCamera: {fileID: 75624537}
 --- !u!1 &280197494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1765,7 @@ MonoBehaviour:
   flt_arrowVelocityRampUp: 10
   bool_isEnded: 0
   go_target: {fileID: 0}
+  playerCamera: {fileID: 1300832501}
 --- !u!114 &683627669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3518,6 +3519,11 @@ Transform:
 --- !u!1 &1857669415 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1761035961400892, guid: 6ce63ddb13e4dcb45aa80d0d0b1fbccb,
+    type: 2}
+  m_PrefabInternal: {fileID: 296270522}
+--- !u!4 &1857669416 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4984321918013042, guid: 6ce63ddb13e4dcb45aa80d0d0b1fbccb,
     type: 2}
   m_PrefabInternal: {fileID: 296270522}
 --- !u!114 &1857669417

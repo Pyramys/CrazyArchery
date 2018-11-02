@@ -15,7 +15,7 @@ public class StageManager : MonoBehaviour {
     [SerializeField] private Player player;
     [SerializeField] private Target target;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private Camera stageEndCamera;
+    [SerializeField] private GameObject stageEndCamera;
 
 
     public float Flt_eventStartTime
@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour {
     {
         if(stageEndCamera == null)
         {
-            stageEndCamera = GameObject.Find("StageEndingCamera").GetComponent<Camera>();
+            stageEndCamera = GameObject.Find("StageEndingCamera");
         }        
     }
     // Use this for initialization.
@@ -88,20 +88,21 @@ public class StageManager : MonoBehaviour {
         }
         CancelInvoke("TrackEvent");
         bool_isEventHappening = false;
-        Debug.Log("Ended Event");
     }
 
     public void EndStage()
     {
-        // Stop the scene.
+        // Stop the scene.        
         target.End();       
         foreach (var go in go_civilians)
         {
             go.GetComponent<Obstacle>().End();
         }
-        // Zoom into the target to view, linger until player taps screen.
+        // Move Camera to Target, linger until player taps screen.
+        player.ToggleCamera(false);
         // Activate the Stage End camera, and have it zoom in
-        stageEndCamera.enabled = true;
+        stageEndCamera.SetActive(true);
+
         
 
         //player.MoveToTarget();

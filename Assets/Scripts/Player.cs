@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private float flt_arrowVelocityRampUp;
     [SerializeField] private bool bool_isEnded;
     [SerializeField] private GameObject go_target;
+    [SerializeField] private Camera playerCamera;
 
 
     private void Start()
@@ -53,7 +54,6 @@ public class Player : MonoBehaviour {
         {
             if(Time.time - flt_startReloadTimeStamp >= flt_reloadTime )
             {
-                Debug.Log("reloaded");
                 Reload();
             }
         }
@@ -65,34 +65,38 @@ public class Player : MonoBehaviour {
     }
 
     void GetInput()
-    {        
-        if(Input.GetKeyUp(KeyCode.Escape))
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             Application.Quit();
-        }        
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (!bool_isReloading)
             {
-                FireBow();               
+                FireBow();
             }
         }
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             bool_isHolding = true;
             // Begins holding the bow, this is how the player can move the camera around and aim his bow.
-        }      
+        }
         // DEBUG ONLY.
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(Cursor.lockState == CursorLockMode.Locked)
+            if (Cursor.lockState == CursorLockMode.Locked)
             {
                 Cursor.lockState = CursorLockMode.None;
             }
             else
-            Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.Locked;
         }
-
+        // DEBUG MODE BUTTON.
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GameObject.Find("StageManager").GetComponent<StageManager>().EndStage();
+        }
     }
 
     void FireBow()
@@ -131,5 +135,10 @@ public class Player : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(transform.position, go_target.transform.position, 2);
         }   
+    }
+
+    public void ToggleCamera(bool val)
+    {
+        playerCamera.enabled = val;
     }
 }
