@@ -102,11 +102,8 @@ public class StageManager : MonoBehaviour {
         player.ToggleCamera(false);
         // Activate the Stage End camera, and have it zoom in
         stageEndCamera.SetActive(true);
-
-        
-
-        //player.MoveToTarget();
         // Disable the scene.
+        player.EndPlayer();
         // Trigger Ad.
         // Bring up score Screen.
         // Change stars color based on performance.

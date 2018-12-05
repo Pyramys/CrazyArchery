@@ -13,6 +13,12 @@ public class ScoreManager : MonoBehaviour {
 
     [SerializeField] private Text txt_score;
 
+    // Score Thresholds for levels.
+    [SerializeField] private int int_level0Score=100;
+    [SerializeField] private int int_level1Score;
+
+    
+
     public int Int_score
     {
         get
@@ -75,5 +81,14 @@ public class ScoreManager : MonoBehaviour {
         int_score = num;
     }
 
+    public int GetThreshold(int num)
+    {
+        switch (num)
+        {
+            case 0: return int_level0Score;
+            case 1: return int_level1Score;
+            default: Debug.Log("Couldn't find level for threshold"); return 10;
+        }
+    }
     
 }

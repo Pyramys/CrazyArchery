@@ -69,17 +69,23 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Application.Quit();
-        }
+        }        
         if (Input.GetMouseButtonUp(0))
         {
-            if (!bool_isReloading)
+            if (!bool_isEnded)
             {
-                FireBow();
-            }
+                if (!bool_isReloading)
+                {
+                    FireBow();
+                }
+            }   
         }
         if (Input.GetMouseButtonDown(0))
         {
-            bool_isHolding = true;
+            if (!bool_isEnded)
+            {
+                bool_isHolding = true;
+            }
             // Begins holding the bow, this is how the player can move the camera around and aim his bow.
         }
         // DEBUG ONLY.
@@ -140,5 +146,10 @@ public class Player : MonoBehaviour {
     public void ToggleCamera(bool val)
     {
         playerCamera.enabled = val;
+    }
+
+    public void EndPlayer()
+    {
+        bool_isEnded = true;
     }
 }

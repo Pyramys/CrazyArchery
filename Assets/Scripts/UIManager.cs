@@ -26,9 +26,18 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Slider slider_timeSlider;
     [SerializeField] private float flt_percentage;
 
+    // End Scene Panel Objects.
+    [SerializeField] private GameObject go_star1;
+    [SerializeField] private GameObject go_star2;
+    [SerializeField] private GameObject go_star3;
+    [SerializeField] private GameObject go_star4;
+    [SerializeField] private GameObject go_star5;
+    [SerializeField] private Text txt_finalScore;
+
     // Other Components.
     [SerializeField] private GameManager gameManager;
     [SerializeField] private StageManager stageManager;
+    [SerializeField] private ScoreManager scoremanager;
     private static UIManager _instance = null;
     public static UIManager Instance
     {
@@ -171,5 +180,27 @@ public class UIManager : MonoBehaviour {
     public void LoadLevel(int num)
     {
         gameManager.LoadLevel(num);
+    }
+
+    public void UpdateEndScenePanel()
+    {
+        // Update Score points text.
+        txt_finalScore.text= "Final score was: "  + scoremanager.Int_score.ToString();
+        // Calculate stars. reach into score manager for the 5 star score threshold for this level
+        CalculateStars();
+
+
+        // Enable stars.
+    }
+
+    void CalculateStars()
+    {
+        var threshold = scoremanager.GetThreshold(gameManager.Int_currentLevel);
+        var oneStar = threshold * .2;
+        var twoStar = threshold * .4;
+        var threeStar = threshold * .6;
+        var fourStar = threshold * .8;
+        var fiveStar = threshold;
+        /
     }
 }
